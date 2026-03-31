@@ -865,35 +865,6 @@ body.menu-open .nav-backdrop {
   font-size: 1.22rem;
 }
 
-.services-arrival {
-  display: inline-grid;
-  gap: 8px;
-  margin: -10px 0 26px;
-  padding: 16px 18px;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background:
-    radial-gradient(circle at top right, rgba(208, 187, 136, 0.12), transparent 40%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    rgba(12, 12, 14, 0.92);
-  box-shadow: var(--shadow-soft);
-}
-
-.services-arrival__label {
-  display: inline-flex;
-  color: var(--soft);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-.services-arrival strong {
-  display: block;
-  font-size: 1rem;
-  line-height: 1.45;
-}
-
 .services-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -948,11 +919,7 @@ body.menu-open .nav-backdrop {
   letter-spacing: 0.16em;
 }
 
-.service-card h3 {
-  margin: 0 0 12px;
-  font-size: 1.14rem;
-}
-
+.service-card h3,
 .credential-card__body h3 {
   margin: 0 0 12px;
   font-size: 1.14rem;
@@ -1983,15 +1950,6 @@ body.menu-open .mobile-dock {
     font-size: 0.98rem;
   }
 
-  .services-arrival {
-    margin: -8px 0 22px;
-    padding: 14px 16px;
-  }
-
-  .services-arrival strong {
-    font-size: 0.96rem;
-  }
-
   .hero {
     padding-top: 120px;
     padding-bottom: 70px;
@@ -2080,6 +2038,7 @@ body.menu-open .mobile-dock {
     font-size: clamp(2rem, 10vw, 2.65rem);
   }
 
+  .difference-card,
   .service-card {
     padding: 24px 20px;
   }
