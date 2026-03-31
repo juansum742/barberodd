@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true">
+      <span class="scroll-progress__bar"></span>
+    </div>
+
     <div class="page-shell">
       <header class="site-header">
         <div class="container header-inner">
@@ -35,17 +39,42 @@
             </span>
           </a>
 
-          <nav class="site-nav" aria-label="Navegación principal">
-            <a href="#servicios">Servicios</a>
-            <a href="#cortes">Cortes</a>
-            <a href="#local">Local</a>
-            <a href="#formacion">Formación</a>
-            <a href="#visitanos">Visitanos</a>
-          </nav>
+          <div class="header-tools">
+            <button
+              class="menu-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-menu"
+              aria-label="Abrir menú"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
 
-          <a class="header-cta" data-whatsapp-link href="#">Reservar</a>
+            <div class="nav-shell" id="site-menu">
+              <nav class="site-nav" aria-label="Navegación principal">
+                <a href="#servicios">Servicios</a>
+                <a href="#cortes">Cortes</a>
+                <a href="#local">Local</a>
+                <a href="#formacion">Formación</a>
+                <a href="#visitanos">Visitanos</a>
+              </nav>
+
+              <div class="nav-shell__meta">
+                <a class="header-link" data-instagram-link href="#">
+                  @barber.rodd
+                </a>
+                <a class="header-cta" data-whatsapp-link href="#">
+                  Reservar por WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
+
+      <button class="nav-backdrop" type="button" aria-label="Cerrar menú"></button>
 
       <main>
         <section class="hero" id="inicio">
@@ -58,79 +87,95 @@
               <span class="eyebrow">Barbería premium en Tacuarembó</span>
               <h1>BARBERODD</h1>
               <p class="hero-subtitle">
-                Cortes premium, fades y estilo profesional
+                Fades limpios, mechas con intención y una imagen que se nota.
               </p>
               <p class="hero-description">
-                Una identidad fuerte, fades limpios, trabajo de color y una
-                imagen que transmite confianza desde el primer vistazo. Diseño,
-                técnica y presencia para que la barbería se vea a la altura del
-                servicio.
+                BARBERODD ya no se presenta como una barbería genérica: muestra
+                su estilo real, su ubicación en pleno centro y la formación que
+                respalda cada trabajo. La idea es que el cliente sienta
+                confianza antes de escribir.
               </p>
 
               <div class="hero-actions">
                 <a class="button button-primary" data-whatsapp-link href="#">
                   Reservar por WhatsApp
                 </a>
-                <a class="button button-secondary" href="#servicios">
-                  Ver precios
+                <a class="button button-secondary" href="#cortes">
+                  Ver cortes reales
                 </a>
               </div>
 
-              <div class="hero-badges">
-                <div class="hero-badge">
-                  <span>Dirección</span>
-                  <strong>18 de Julio 156</strong>
-                </div>
-                <div class="hero-badge">
-                  <span>Instagram</span>
-                  <a data-instagram-link href="#">@barber.rodd</a>
-                </div>
-                <div class="hero-badge">
+              <div class="hero-points">
+                <article class="hero-point">
+                  <span>Ubicación</span>
+                  <strong>18 de Julio 156 · centro</strong>
+                </article>
+                <article class="hero-point">
                   <span>Especialidad</span>
                   <strong>Fade, mechas y global</strong>
-                </div>
+                </article>
+                <article class="hero-point">
+                  <span>Presencia</span>
+                  <strong>Marca real, cortes reales</strong>
+                </article>
+              </div>
+
+              <div class="hero-scroll" aria-hidden="true">
+                <span class="hero-scroll__label">
+                  Deslizá para ver trabajos, certificados y el local
+                </span>
+                <span class="hero-scroll__line"></span>
               </div>
             </div>
 
             <div class="hero-stage reveal reveal-delay">
-              <div class="hero-visual tilt-card" data-tilt>
-                <div class="hero-visual__image-wrap">
+              <div class="hero-collage">
+                <figure class="hero-card hero-card--primary tilt-card" data-tilt>
                   <img
-                    class="hero-visual__image"
+                    class="hero-card__image"
                     src="assets/Foto%20corte%204.jpeg"
                     alt="Corte fade moderno realizado por BARBERODD"
                     width="768"
                     height="768"
                     fetchpriority="high"
-                    data-parallax="0.12"
+                    data-parallax="0.14"
                   />
-                </div>
-                <div class="hero-visual__orbit"></div>
-                <div class="hero-visual__stamp">
+                  <figcaption>
+                    <span>Resultado real</span>
+                    <strong>Fade con textura y terminación limpia.</strong>
+                  </figcaption>
+                </figure>
+
+                <figure class="hero-card hero-card--local tilt-card" data-tilt>
                   <img
-                    src="assets/Logo%20.jpeg"
-                    alt="Sello BARBERODD"
-                    width="160"
-                    height="160"
+                    class="hero-card__image"
+                    src="assets/Foto%20local%2018.jpeg"
+                    alt="Frente del local BARBERODD en 18 de Julio 156"
+                    width="580"
+                    height="774"
+                    loading="lazy"
+                    data-parallax="0.08"
                   />
-                </div>
-              </div>
+                  <figcaption>
+                    <span>Ubicación real</span>
+                    <strong>Se encuentra fácil en 18 de Julio 156.</strong>
+                  </figcaption>
+                </figure>
 
-              <div class="hero-aside">
-                <article class="mini-card mini-card--address">
-                  <span>Ubicación</span>
-                  <strong>Frente visible y fácil de ubicar</strong>
-                  <p>18 de Julio 156, pegado a la Intendencia de Tacuarembó.</p>
-                </article>
-
-                <article class="mini-card mini-card--training">
-                  <span>Formación</span>
-                  <strong>Capacitación real y certificada</strong>
-                  <p>
-                    Certificados en workshop y colorimetría para respaldar la
-                    calidad del trabajo.
-                  </p>
-                </article>
+                <figure class="hero-card hero-card--cert tilt-card" data-tilt>
+                  <img
+                    class="hero-card__image"
+                    src="assets/Foto%20certificado%20alen%202%20colorimetria%20.jpeg"
+                    alt="Certificado en colorimetría de Alen Rodríguez"
+                    width="768"
+                    height="768"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    <span>Formación</span>
+                    <strong>Capacitación en colorimetría pro.</strong>
+                  </figcaption>
+                </figure>
               </div>
             </div>
           </div>
@@ -153,14 +198,66 @@
           </div>
         </section>
 
+        <section class="section section-difference" id="diferencial">
+          <div class="container">
+            <div class="section-heading reveal">
+              <span class="eyebrow">Por Qué BARBERODD</span>
+              <h2>Una página pensada para que el cliente quiera reservar.</h2>
+              <p>
+                Acá no se vende solo una barbería: se vende una identidad clara,
+                un lugar real, trabajos visibles y una imagen mucho más seria.
+              </p>
+            </div>
+
+            <div class="difference-grid">
+              <article class="difference-card difference-card--wide reveal">
+                <span class="difference-card__index">01</span>
+                <h3>No parece una plantilla.</h3>
+                <p>
+                  El sitio usa tus fotos, tu logo, tu ubicación y la formación
+                  real del barbero. Eso hace que BARBERODD se sienta propia y
+                  no como una web genérica más.
+                </p>
+              </article>
+
+              <article class="difference-card reveal">
+                <span class="difference-card__index">02</span>
+                <h3>Se entiende en segundos.</h3>
+                <p>
+                  El cliente ve rápido qué hacés, cuánto sale, dónde estás y
+                  cómo escribirte. Menos fricción, más consultas.
+                </p>
+              </article>
+
+              <article class="difference-card reveal">
+                <span class="difference-card__index">03</span>
+                <h3>Genera confianza.</h3>
+                <p>
+                  Mostrar certificados, ubicación y trabajos reales eleva la
+                  percepción del negocio y da seguridad antes de la reserva.
+                </p>
+              </article>
+
+              <article class="difference-card reveal">
+                <span class="difference-card__index">04</span>
+                <h3>Empuja a escribir.</h3>
+                <p>
+                  En celular todo queda armado para reservar rápido, con botón
+                  fijo y recorrido claro desde el primer scroll.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section class="section section-services" id="servicios">
           <div class="container">
             <div class="section-heading reveal">
               <span class="eyebrow">Servicios</span>
-              <h2>Precios claros con imagen de marca seria.</h2>
+              <h2>Lo más pedido en BARBERODD.</h2>
               <p>
-                La propuesta mezcla presencia premium, cortes actuales y un
-                listado de servicios fácil de entender desde el primer scroll.
+                Precios claros, estética prolija y una presentación hecha para
+                que el cliente visualice rápido lo que puede hacerse.
               </p>
             </div>
 
@@ -206,11 +303,11 @@
         <section class="section section-gallery" id="cortes">
           <div class="container">
             <div class="section-heading reveal">
-              <span class="eyebrow">Trabajos reales</span>
-              <h2>La página ahora muestra cortes reales de BARBERODD.</h2>
+              <span class="eyebrow">Trabajos Reales</span>
+              <h2>Cortes hechos en el sillón de BARBERODD.</h2>
               <p>
-                Reemplacé las fotos genéricas por material real de la barbería
-                para que el sitio venda confianza, cercanía y resultados.
+                La galería ahora habla desde el trabajo real del local. Eso
+                cambia por completo la percepción de calidad y cercanía.
               </p>
             </div>
 
@@ -267,8 +364,8 @@
                   loading="lazy"
                 />
                 <p>
-                  Una estética fuerte, reconocible y lista para que la barbería
-                  se vea seria tanto en web como en redes.
+                  Una identidad fuerte, reconocible y lista para verse seria
+                  tanto en web como en Instagram.
                 </p>
               </article>
 
@@ -297,11 +394,12 @@
         <section class="section section-local" id="local">
           <div class="container showcase-grid">
             <div class="showcase-copy reveal">
-              <span class="eyebrow">El local</span>
-              <h2>Una fachada real que suma cercanía y referencia visual.</h2>
+              <span class="eyebrow">El Local</span>
+              <h2>Una fachada real que también vende confianza.</h2>
               <p>
                 Mostrar el frente del local ayuda a que nuevos clientes
-                identifiquen rápido el negocio y lleguen con más confianza.
+                identifiquen rápido el negocio, lo ubiquen sin dudas y sientan
+                más seguridad antes de ir.
               </p>
 
               <div class="detail-list">
@@ -331,10 +429,14 @@
                   data-parallax="0.08"
                 />
               </div>
+
               <div class="showcase-float">
                 <span>BARBERODD</span>
-                <strong>Presencia en calle</strong>
-                <p>Fácil de ubicar, con identidad propia y referencia clara.</p>
+                <strong>Visible, céntrico y fácil de ubicar.</strong>
+                <p>
+                  Una referencia visual clara mejora la llegada y reduce dudas
+                  antes del turno.
+                </p>
               </div>
             </div>
           </div>
@@ -344,10 +446,10 @@
           <div class="container">
             <div class="section-heading reveal">
               <span class="eyebrow">Formación</span>
-              <h2>La confianza también se construye mostrando preparación.</h2>
+              <h2>No solo corta bien: también se sigue formando.</h2>
               <p>
-                Sumé una sección especial para destacar la capacitación de Alen
-                Rodríguez y reforzar la percepción profesional del negocio.
+                La sección de certificados le da autoridad a la marca y ayuda a
+                que el cliente valore más trabajos como mechas, global y color.
               </p>
             </div>
 
@@ -458,8 +560,8 @@
                 <span class="eyebrow">Reserva inmediata</span>
                 <h2>Reservá tu turno ahora</h2>
                 <p>
-                  La página ya está preparada para convertir visitas en clientes
-                  reales con una salida directa a WhatsApp.
+                  Una salida clara a WhatsApp termina de convertir la visita en
+                  consulta real. La página ya está pensada para eso.
                 </p>
               </div>
 
@@ -497,6 +599,13 @@
           </div>
         </div>
       </footer>
+    </div>
+
+    <div class="mobile-dock">
+      <a class="mobile-dock__primary" data-whatsapp-link href="#">
+        Reservar
+      </a>
+      <a class="mobile-dock__secondary" href="#cortes">Ver cortes</a>
     </div>
 
     <script src="script.js"></script>

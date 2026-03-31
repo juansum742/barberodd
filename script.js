@@ -21,15 +21,60 @@ document.querySelectorAll("[data-instagram-link]").forEach((link) => {
   link.setAttribute("rel", "noreferrer");
 });
 
+const body = document.body;
 const header = document.querySelector(".site-header");
-const revealItems = document.querySelectorAll(".reveal");
+const progressBar = document.querySelector(".scroll-progress__bar");
+const menuToggle = document.querySelector(".menu-toggle");
+const navBackdrop = document.querySelector(".nav-backdrop");
+const navLinks = Array.from(
+  document.querySelectorAll('.site-nav a[href^="#"]')
+);
+const revealItems = Array.from(document.querySelectorAll(".reveal"));
 const parallaxItems = document.querySelectorAll("[data-parallax]");
-const tiltCards = window.matchMedia("(hover: hover)").matches
-  ? document.querySelectorAll("[data-tilt]")
-  : [];
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const tiltCards =
+  !reduceMotion && window.matchMedia("(hover: hover)").matches
+    ? document.querySelectorAll("[data-tilt]")
+    : [];
 
-const syncHeader = () => {
+revealItems.forEach((item, index) => {
+  if (!item.classList.contains("reveal-delay")) {
+    item.style.setProperty("--reveal-delay", `${(index % 4) * 70}ms`);
+  }
+});
+
+const sections = navLinks
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+const setMenuState = (open) => {
+  body.classList.toggle("menu-open", open);
+  menuToggle.setAttribute("aria-expanded", String(open));
+};
+
+menuToggle.addEventListener("click", () => {
+  setMenuState(!body.classList.contains("menu-open"));
+});
+
+navBackdrop.addEventListener("click", () => setMenuState(false));
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => setMenuState(false));
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    setMenuState(false);
+  }
+});
+
+const syncScrollUi = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 18);
+
+  const scrollableHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+  progressBar.style.transform = `scaleX(${progress})`;
 };
 
 if (!("IntersectionObserver" in window)) {
@@ -53,6 +98,27 @@ if (!("IntersectionObserver" in window)) {
   );
 
   revealItems.forEach((item) => revealObserver.observe(item));
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const currentId = `#${entry.target.id}`;
+        navLinks.forEach((link) => {
+          link.classList.toggle("is-active", link.getAttribute("href") === currentId);
+        });
+      });
+    },
+    {
+      rootMargin: "-45% 0px -45% 0px",
+      threshold: 0,
+    }
+  );
+
+  sections.forEach((section) => sectionObserver.observe(section));
 }
 
 let isTicking = false;
@@ -71,7 +137,7 @@ const updateParallax = () => {
 };
 
 const requestParallaxUpdate = () => {
-  if (isTicking) {
+  if (reduceMotion || isTicking) {
     return;
   }
 
@@ -99,9 +165,16 @@ tiltCards.forEach((card) => {
   });
 });
 
-syncHeader();
+syncScrollUi();
 requestParallaxUpdate();
 
-window.addEventListener("scroll", syncHeader, { passive: true });
+window.addEventListener("scroll", syncScrollUi, { passive: true });
 window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
-window.addEventListener("resize", requestParallaxUpdate);
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 780) {
+    setMenuState(false);
+  }
+
+  requestParallaxUpdate();
+  syncScrollUi();
+});
