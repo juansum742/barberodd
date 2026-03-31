@@ -15,18 +15,6 @@ document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
   link.setAttribute("rel", "noreferrer");
 });
 
-document.querySelectorAll("[data-whatsapp-service]").forEach((link) => {
-  const service = link.getAttribute("data-whatsapp-service");
-  const serviceMessage = `Hola BARBERODD, quiero consultar o reservar ${service}. ¿Qué horarios tienen disponibles?`;
-  const serviceUrl = `https://wa.me/${businessConfig.whatsappNumber}?text=${encodeURIComponent(
-    serviceMessage
-  )}`;
-
-  link.setAttribute("href", serviceUrl);
-  link.setAttribute("target", "_blank");
-  link.setAttribute("rel", "noreferrer");
-});
-
 document.querySelectorAll("[data-instagram-link]").forEach((link) => {
   link.setAttribute("href", businessConfig.instagramUrl);
   link.setAttribute("target", "_blank");
